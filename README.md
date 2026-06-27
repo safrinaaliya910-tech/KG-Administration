@@ -49,46 +49,7 @@ Your Firebase is already configured! The config file is at `src/firebase/config.
 1. Firebase Authentication is enabled with Email/Password provider
 2. Firestore Database is created (start in test mode for development)
 
-### 3. Setup Predefined Users
-
-**Option A: Using Setup Page (Recommended)**
-1. Start the dev server: `npm run dev`
-2. Navigate to: `http://localhost:5173/setup`
-3. Click "Create Predefined Users"
-
-**Predefined Users:**
-- **HOD**: `hod@department.com` / `hod123456`
-- **Faculty 1**: `faculty1@department.com` / `faculty123`
-- **Faculty 2**: `faculty2@department.com` / `faculty123`
-- **Faculty 3**: `faculty3@department.com` / `faculty123`
-
-**Option B: Manual Setup**
-See `SETUP_INSTRUCTIONS.md` for detailed manual setup steps.
-
-### 3. Firestore Security Rules (for development)
-
-For development, you can use these rules (update for production):
-
-```javascript
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /users/{userId} {
-      allow read, write: if request.auth != null;
-    }
-    match /tasks/{taskId} {
-      allow read: if request.auth != null;
-      allow create: if request.auth != null;
-      allow update: if request.auth != null;
-    }
-    match /submissions/{submissionId} {
-      allow read, write: if request.auth != null;
-    }
-  }
-}
-```
-
-### 4. Run the Application
+### 3. Run the Application
 
 ```bash
 npm run dev
@@ -96,47 +57,13 @@ npm run dev
 
 The application will be available at `http://localhost:5173`
 
-### 5. First Time Login
+### 4. First Time Login
 
 1. Go to the home page - you'll see two login options (HOD and Faculty)
 2. Click on your role to access the dedicated login page
 3. Use the predefined credentials from Step 3
 4. You'll be automatically redirected to your dashboard
 
-## Database Structure
-
-### users (collection)
-```
-{
-  uid: string,
-  name: string,
-  role: "hod" | "faculty",
-  score: number (default: 0),
-  completedTasks: number (default: 0)
-}
-```
-
-### tasks (collection)
-```
-{
-  title: string,
-  description: string,
-  assignedTo: string (faculty uid),
-  deadline: timestamp,
-  status: "pending" | "submitted" | "approved",
-  createdAt: timestamp
-}
-```
-
-### submissions (collection)
-```
-{
-  taskId: string,
-  facultyId: string,
-  content: string,
-  submittedAt: timestamp
-}
-```
 
 ## Usage
 
