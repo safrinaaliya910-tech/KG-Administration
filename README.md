@@ -41,21 +41,11 @@ A full-stack web application for managing tasks between HOD (Head of Department)
 npm install
 ```
 
-### 2. Firebase Configuration
-
-Your Firebase is already configured! The config file is at `src/firebase/config.js`.
-
-**Make sure:**
-1. Firebase Authentication is enabled with Email/Password provider
-2. Firestore Database is created (start in test mode for development)
-
 ### 3. Run the Application
 
 ```bash
 npm run dev
 ```
-
-The application will be available at `http://localhost:5173`
 
 ### 4. First Time Login
 
